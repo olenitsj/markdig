@@ -35,6 +35,7 @@ using Markdig.Parsers.Inlines;
 using Markdig.Extensions.Globalization;
 using Markdig.Helpers;
 using Markdig.Extensions.ReferralLinks;
+using Markdig.Extensions.Forms;
 
 namespace Markdig
 {
@@ -530,6 +531,21 @@ namespace Markdig
         }
 
         /// <summary>
+        /// Uses the forms extension.
+        /// </summary>
+        /// <param name="pipeline">The pipeline</param>
+        /// <param name="options">Set of required options</param>
+        /// <returns>The modified pipeline</returns>
+        public static MarkdownPipelineBuilder UseForms(this MarkdownPipelineBuilder pipeline)
+        {
+            if (!pipeline.Extensions.Contains<FormsExtension>())
+            {
+                pipeline.Extensions.Add(new FormsExtension());
+            }
+            return pipeline;
+        }
+
+        /// <summary>
         /// Configures the pipeline using a string that defines the extensions to activate.
         /// </summary>
         /// <param name="pipeline">The pipeline (e.g: advanced for <see cref="UseAdvancedExtensions"/>, pipetables+gridtables for <see cref="UsePipeTables"/> and <see cref="UseGridTables"/></param>
@@ -642,6 +658,9 @@ namespace Markdig
                         break;
                     case "globalization":
                         pipeline.UseGlobalization();
+                        break;
+                    case "forms":
+                        pipeline.UseForms();
                         break;
                     default:
                         throw new ArgumentException($"Invalid extension `{extension}` from `{extensions}`", nameof(extensions));
