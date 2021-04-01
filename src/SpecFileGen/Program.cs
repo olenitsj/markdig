@@ -89,6 +89,7 @@ namespace SpecFileGen
             new Spec("Jira Links",          "JiraLinks.md",                 "jiralinks"),
             new Spec("Globalization",       "GlobalizationSpecs.md",        "globalization+advanced+emojis"),
             new Spec("Figures, Footers and Cites", "FigureFooterAndCiteSpecs.md", "figures+footers+citations|advanced"),
+            new Spec("Forms", "FormsSpecs.md", "forms|advanced"),
 
             new NormalizeSpec("Headings", "Headings.md", ""),
 
